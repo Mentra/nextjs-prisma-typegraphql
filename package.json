@@ -63,7 +63,7 @@
     "db:create": "docker run --detach --publish 5432:5432 --name prismadb -e POSTGRES_PASSWORD=prisma postgres:12",
     "db:migrate": "env-cmd -f .env.development.local --use-shell 'prisma migrate dev'",
     "db:remove": "docker rm prismadb",
-    "db:reset": "npm run db:stop && npm run db:remove && npm run db:create",
+    "db:reset": "npm run db:stop && npm run db:remove && npm run db:create && rm -rf ./prisma/typegraphql",
     "db:seed": "env-cmd -f .env.development.local --use-shell 'npx prisma db seed'",
     "db:start": "docker start prismadb",
     "db:stop": "docker stop prismadb",

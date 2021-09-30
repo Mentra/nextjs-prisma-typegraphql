@@ -8,6 +8,12 @@ A boilerplate with Next.js, Prisma, and TypeGraphQL, all running together.
 
 ## Setup
 
-1. `npm run db:create`
-2. `npm run db:start`
-3. `npm run migrate`
+1. `npm install`
+2. `npm run db:create`
+3. `npm run db:start`
+4. `npm run db:migrate`
+5. `npm run db:seed`
+6. `npm run dev`
+7. Use the default credentials found in `prisma/seed.ts` to log in on the `/login` page
+8. Success!
+
