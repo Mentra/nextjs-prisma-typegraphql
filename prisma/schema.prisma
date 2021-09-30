@@ -1,0 +1,30 @@
+datasource postgres {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator typegraphql {
+  output          = "./typegraphql/generated"
+  provider        = "typegraphql-prisma"
+  simpleResolvers = true
+}
+
+model Session {
+  id     String @id @default(cuid())
+  userId String @default(cuid())
+  token  String
+}
+
+model User {
+  id           String   @id @default(cuid())
+  createdAt    DateTime @default(now())
+  email        String   @unique
+  lastModified DateTime @updatedAt
+  name         String
+  /// @TypeGraphQL.omit(output: true)
+  password     String
+}
