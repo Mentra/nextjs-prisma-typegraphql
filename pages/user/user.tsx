@@ -1,8 +1,6 @@
-import { addApolloState, initializeApollo } from "lib/with_apollo";
-import type { GetServerSideProps, NextPage } from "next";
-import getCurrentUserFromNextContext from "lib/get_user_from_next_context";
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
+import type { NextPage } from "next";
+import styles from "../../styles/Home.module.css";
 import { User } from "prisma/typegraphql/generated/models/User";
 
 interface Props {
@@ -31,21 +29,6 @@ const UserPage: NextPage<Props> = (props: Props) => {
       </main>
     </div>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const apolloClient = initializeApollo({ context });
-  const { currentUser } = await getCurrentUserFromNextContext({ context });
-  if (!currentUser) {
-    return {
-      notFound: true
-    };
-  }
-  return addApolloState(apolloClient, {
-    props: {
-      currentUser
-    }
-  });
 };
 
 export default UserPage;
